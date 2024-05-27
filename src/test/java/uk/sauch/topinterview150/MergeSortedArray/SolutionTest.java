@@ -54,4 +54,20 @@ class SolutionTest {
         // then
         assertThat(nums1).isEqualTo(expected);
     }
+
+    @Test
+    void should_merge_custom_example() {
+        final var nums1 = new int[]{3, 4, 5, 0, 0, 0};
+        final var m = 3;
+        final var nums2 = new int[]{1, 1, 2};
+        final var n = 3;
+
+        final var expected = new int[]{1, 1, 2, 3, 4, 5};
+
+        // when
+        new Solution().merge(nums1, m, nums2, n);
+
+        // then
+        assertThat(nums1).isEqualTo(expected);
+    }
 }

@@ -2,29 +2,25 @@ package uk.sauch.topinterview150.MergeSortedArray;
 
 
 public class Solution {
+
     public void merge(int[] nums1, int m, int[] nums2, int n) {
+        var resultPointer = m + n - 1;
+        var num1Pointer = m - 1;
+        var num2Pointer = n - 1;
 
-        if (n == 0) return;
+        while (resultPointer >= 0) {
+            int toInsert;
 
-        if (m == 0) {
-            System.arraycopy(nums2, 0, nums1, 0, nums2.length);
-            return;
-        }
-
-        int[] result = new int[nums1.length];
-
-        var resultPointer = 0;
-        var num1Pointer = 0;
-        var num2Pointer = 0;
-
-        do {
-            if (nums1[num1Pointer] != 0 && nums1[num1Pointer] < nums2[num2Pointer]) {
-                result[resultPointer++] = nums1[num1Pointer++];
+            if (num1Pointer < 0) {
+                toInsert = nums2[num2Pointer--];
+            } else if (num2Pointer < 0) {
+                toInsert = nums1[num1Pointer--];
+            } else if (nums1[num1Pointer] > nums2[num2Pointer]) {
+                toInsert = nums1[num1Pointer--];
             } else {
-                result[resultPointer++] = nums2[num2Pointer++];
+                toInsert = nums2[num2Pointer--];
             }
-        } while (resultPointer < result.length);
-
-        System.arraycopy(result, 0, nums1, 0, nums1.length);
+            nums1[resultPointer--] = toInsert;
+        }
     }
 }
